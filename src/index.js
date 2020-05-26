@@ -1,17 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { App } from "./App";
+import { App2 } from "./App2";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class UserInput extends React.Component {
+  state = {
+    userName: "Max",
+  };
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  handleChange = (e) => {
+    this.setState({ userName: e.target.value });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <App2 handleEvent={this.handleChange} value={this.state.userName} />
+        <App name={this.state.userName} />
+        <App name={this.state.userName} />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<UserInput />, document.getElementById("root"));
